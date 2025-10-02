@@ -23,12 +23,12 @@ require "bundler/setup"
 require "userplex"
 
 userplex = Userplex::Client.new(
-  api_key: ENV["PETSTORE_API_KEY"] # This is the default and can be omitted
+  api_key: ENV["USERPLEX_API_KEY"] # This is the default and can be omitted
 )
 
-order = userplex.store.orders.create(pet_id: 1, quantity: 1, status: "placed")
+response = userplex.users.identify(email: "REPLACE_ME", name: "REPLACE_ME", user_id: "REPLACE_ME")
 
-puts(order.id)
+puts(response.success)
 ```
 
 ### Handling errors
@@ -37,7 +37,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  store = userplex.store.list_inventory
+  user = userplex.users.identify(email: "REPLACE_ME", name: "REPLACE_ME", user_id: "REPLACE_ME")
 rescue Userplex::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -80,7 +80,12 @@ userplex = Userplex::Client.new(
 )
 
 # Or, configure per-request:
-userplex.store.list_inventory(request_options: {max_retries: 5})
+userplex.users.identify(
+  email: "REPLACE_ME",
+  name: "REPLACE_ME",
+  user_id: "REPLACE_ME",
+  request_options: {max_retries: 5}
+)
 ```
 
 ### Timeouts
@@ -94,7 +99,12 @@ userplex = Userplex::Client.new(
 )
 
 # Or, configure per-request:
-userplex.store.list_inventory(request_options: {timeout: 5})
+userplex.users.identify(
+  email: "REPLACE_ME",
+  name: "REPLACE_ME",
+  user_id: "REPLACE_ME",
+  request_options: {timeout: 5}
+)
 ```
 
 On timeout, `Userplex::Errors::APITimeoutError` is raised.
@@ -125,7 +135,10 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 
 ```ruby
 response =
-  userplex.store.list_inventory(
+  userplex.users.identify(
+    email: "REPLACE_ME",
+    name: "REPLACE_ME",
+    user_id: "REPLACE_ME",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -171,46 +184,18 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-userplex.store.orders.create(pet_id: 1, quantity: 1, status: "placed")
+userplex.users.identify(email: "REPLACE_ME", name: "REPLACE_ME", user_id: "REPLACE_ME")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-userplex.store.orders.create(pet_id: 1, quantity: 1, status: "placed")
+userplex.users.identify(email: "REPLACE_ME", name: "REPLACE_ME", user_id: "REPLACE_ME")
 
 # You can also splat a full Params class:
-params = Userplex::Store::OrderCreateParams.new(pet_id: 1, quantity: 1, status: "placed")
-userplex.store.orders.create(**params)
-```
-
-### Enums
-
-Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
-
-```ruby
-# :available
-puts(Userplex::Pet::Status::AVAILABLE)
-
-# Revealed type: `T.all(Userplex::Pet::Status, Symbol)`
-T.reveal_type(Userplex::Pet::Status::AVAILABLE)
-```
-
-Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
-
-```ruby
-# Using the enum constants preserves the tagged type information:
-userplex.pets.create(
-  status: Userplex::Pet::Status::AVAILABLE,
-  # …
-)
-
-# Literal values are also permissible:
-userplex.pets.create(
-  status: :available,
-  # …
-)
+params = Userplex::UserIdentifyParams.new(email: "REPLACE_ME", name: "REPLACE_ME", user_id: "REPLACE_ME")
+userplex.users.identify(**params)
 ```
 
 ## Versioning

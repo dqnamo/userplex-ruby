@@ -1,0 +1,15 @@
+module Userplex
+  module Models
+    type user_identify_response = { success: bool, user_id: String }
+
+    class UserIdentifyResponse < Userplex::Internal::Type::BaseModel
+      attr_accessor success: bool
+
+      attr_accessor user_id: String
+
+      def initialize: (success: bool, user_id: String) -> void
+
+      def to_hash: -> { success: bool, user_id: String }
+    end
+  end
+end

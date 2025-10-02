@@ -1,13 +1,13 @@
 module Userplex
   module Resources
-    class Users
-      def identify: (
-        email: String,
-        name: String,
+    class Events
+      def track: (
+        event: String,
         user_id: String,
         ?properties: ::Hash[Symbol, top?],
+        ?timestamp: Time,
         ?request_options: Userplex::request_opts
-      ) -> Userplex::Models::UserIdentifyResponse
+      ) -> Userplex::Models::EventTrackResponse
 
       def initialize: (client: Userplex::Client) -> void
     end

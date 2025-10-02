@@ -15,28 +15,29 @@ module Userplex
     # Default max retry delay in seconds.
     DEFAULT_MAX_RETRY_DELAY = 8.0
 
+    # Enter your API key from your project settings
     # @return [String]
     attr_reader :api_key
 
-    # @return [Userplex::Resources::Pets]
-    attr_reader :pets
-
-    # @return [Userplex::Resources::Store]
-    attr_reader :store
-
     # @return [Userplex::Resources::Users]
     attr_reader :users
+
+    # @return [Userplex::Resources::Events]
+    attr_reader :events
 
     # @api private
     #
     # @return [Hash{String=>String}]
     private def auth_headers
-      {"api_key" => @api_key}
+      return {} if @api_key.nil?
+
+      {"authorization" => "Bearer #{@api_key}"}
     end
 
     # Creates and returns a new client for interacting with the API.
     #
-    # @param api_key [String, nil] Defaults to `ENV["PETSTORE_API_KEY"]`
+    # @param api_key [String, nil] Enter your API key from your project settings Defaults to
+    # `ENV["USERPLEX_API_KEY"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["USERPLEX_BASE_URL"]`
@@ -49,17 +50,17 @@ module Userplex
     #
     # @param max_retry_delay [Float]
     def initialize(
-      api_key: ENV["PETSTORE_API_KEY"],
+      api_key: ENV["USERPLEX_API_KEY"],
       base_url: ENV["USERPLEX_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
       initial_retry_delay: self.class::DEFAULT_INITIAL_RETRY_DELAY,
       max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY
     )
-      base_url ||= "https://petstore3.swagger.io/api/v3"
+      base_url ||= "http://localhost:3000"
 
       if api_key.nil?
-        raise ArgumentError.new("api_key is required, and can be set via environ: \"PETSTORE_API_KEY\"")
+        raise ArgumentError.new("api_key is required, and can be set via environ: \"USERPLEX_API_KEY\"")
       end
 
       @api_key = api_key.to_s
@@ -72,9 +73,8 @@ module Userplex
         max_retry_delay: max_retry_delay
       )
 
-      @pets = Userplex::Resources::Pets.new(client: self)
-      @store = Userplex::Resources::Store.new(client: self)
       @users = Userplex::Resources::Users.new(client: self)
+      @events = Userplex::Resources::Events.new(client: self)
     end
   end
 end
