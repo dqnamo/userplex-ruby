@@ -1,0 +1,9 @@
+module Userplex
+  module Internal
+    extend Userplex::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | Userplex::FilePart
+
+    OMIT: Object
+  end
+end
