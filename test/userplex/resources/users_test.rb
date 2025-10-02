@@ -3,112 +3,20 @@
 require_relative "../test_helper"
 
 class Userplex::Test::Resources::UsersTest < Userplex::Test::ResourceTest
-  def test_create
+  def test_identify_required_params
     skip("Prism tests are disabled")
 
-    response = @userplex.users.create
+    response = @userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
 
     assert_pattern do
-      response => Userplex::User
+      response => Userplex::Models::UserIdentifyResponse
     end
 
     assert_pattern do
       response => {
-        id: Integer | nil,
-        email: String | nil,
-        first_name: String | nil,
-        last_name: String | nil,
-        password: String | nil,
-        phone: String | nil,
-        username: String | nil,
-        user_status: Integer | nil
+        success: Userplex::Internal::Type::Boolean,
+        user_id: String
       }
-    end
-  end
-
-  def test_retrieve
-    skip("Prism tests are disabled")
-
-    response = @userplex.users.retrieve("username")
-
-    assert_pattern do
-      response => Userplex::User
-    end
-
-    assert_pattern do
-      response => {
-        id: Integer | nil,
-        email: String | nil,
-        first_name: String | nil,
-        last_name: String | nil,
-        password: String | nil,
-        phone: String | nil,
-        username: String | nil,
-        user_status: Integer | nil
-      }
-    end
-  end
-
-  def test_update
-    skip("Prism tests are disabled")
-
-    response = @userplex.users.update("username")
-
-    assert_pattern do
-      response => nil
-    end
-  end
-
-  def test_delete
-    skip("Prism tests are disabled")
-
-    response = @userplex.users.delete("username")
-
-    assert_pattern do
-      response => nil
-    end
-  end
-
-  def test_create_with_list
-    skip("Prism tests are disabled")
-
-    response = @userplex.users.create_with_list
-
-    assert_pattern do
-      response => Userplex::User
-    end
-
-    assert_pattern do
-      response => {
-        id: Integer | nil,
-        email: String | nil,
-        first_name: String | nil,
-        last_name: String | nil,
-        password: String | nil,
-        phone: String | nil,
-        username: String | nil,
-        user_status: Integer | nil
-      }
-    end
-  end
-
-  def test_login
-    skip("Prism tests are disabled")
-
-    response = @userplex.users.login
-
-    assert_pattern do
-      response => String
-    end
-  end
-
-  def test_logout
-    skip("Prism tests are disabled")
-
-    response = @userplex.users.logout
-
-    assert_pattern do
-      response => nil
     end
   end
 end

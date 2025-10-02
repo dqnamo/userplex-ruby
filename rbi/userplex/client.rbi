@@ -10,17 +10,15 @@ module Userplex
 
     DEFAULT_MAX_RETRY_DELAY = T.let(8.0, Float)
 
+    # Enter your API key from your project settings
     sig { returns(String) }
     attr_reader :api_key
 
-    sig { returns(Userplex::Resources::Pets) }
-    attr_reader :pets
-
-    sig { returns(Userplex::Resources::Store) }
-    attr_reader :store
-
     sig { returns(Userplex::Resources::Users) }
     attr_reader :users
+
+    sig { returns(Userplex::Resources::Events) }
+    attr_reader :events
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }
@@ -39,8 +37,9 @@ module Userplex
       ).returns(T.attached_class)
     end
     def self.new(
-      # Defaults to `ENV["PETSTORE_API_KEY"]`
-      api_key: ENV["PETSTORE_API_KEY"],
+      # Enter your API key from your project settings Defaults to
+      # `ENV["USERPLEX_API_KEY"]`
+      api_key: ENV["USERPLEX_API_KEY"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["USERPLEX_BASE_URL"]`
       base_url: ENV["USERPLEX_BASE_URL"],

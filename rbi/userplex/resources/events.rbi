@@ -2,27 +2,27 @@
 
 module Userplex
   module Resources
-    class Users
-      # Creates or updates an end user in InstantDB with the provided information.
-      # Requires a valid API key for authentication.
+    class Events
+      # Creates or uses an existing event and records an event occurrence for an end
+      # user. Requires a valid API key for authentication.
       sig do
         params(
-          email: String,
-          name: String,
+          event: String,
           user_id: String,
           properties: T::Hash[Symbol, T.nilable(T.anything)],
+          timestamp: Time,
           request_options: Userplex::RequestOptions::OrHash
-        ).returns(Userplex::Models::UserIdentifyResponse)
+        ).returns(Userplex::Models::EventTrackResponse)
       end
-      def identify(
-        # User email address
-        email:,
-        # User full name
-        name:,
-        # Unique identifier for the user
+      def track(
+        # Event name
+        event:,
+        # External user ID
         user_id:,
-        # Additional user properties
+        # Event metadata
         properties: nil,
+        # Event timestamp (ISO 8601)
+        timestamp: nil,
         request_options: {}
       )
       end

@@ -1,5 +1,0 @@
-module Userplex
-  module Models
-    class UserLoginResponse = String
-  end
-end

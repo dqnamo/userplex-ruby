@@ -1,0 +1,43 @@
+module Userplex
+  module Models
+    type user_identify_params =
+      {
+        email: String,
+        name: String,
+        user_id: String,
+        properties: ::Hash[Symbol, top?]
+      }
+      & Userplex::Internal::Type::request_parameters
+
+    class UserIdentifyParams < Userplex::Internal::Type::BaseModel
+      extend Userplex::Internal::Type::RequestParameters::Converter
+      include Userplex::Internal::Type::RequestParameters
+
+      attr_accessor email: String
+
+      attr_accessor name: String
+
+      attr_accessor user_id: String
+
+      attr_reader properties: ::Hash[Symbol, top?]?
+
+      def properties=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
+
+      def initialize: (
+        email: String,
+        name: String,
+        user_id: String,
+        ?properties: ::Hash[Symbol, top?],
+        ?request_options: Userplex::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        email: String,
+        name: String,
+        user_id: String,
+        properties: ::Hash[Symbol, top?],
+        request_options: Userplex::RequestOptions
+      }
+    end
+  end
+end

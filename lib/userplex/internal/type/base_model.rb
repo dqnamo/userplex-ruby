@@ -438,11 +438,10 @@ module Userplex
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `order` is a `Userplex::Order`
-        #   order => {
-        #     id: id,
-        #     complete: complete,
-        #     pet_id: pet_id
+        #   # `user_identify_response` is a `Userplex::Models::UserIdentifyResponse`
+        #   user_identify_response => {
+        #     success: success,
+        #     user_id: user_id
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)
