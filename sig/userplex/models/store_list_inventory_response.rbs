@@ -1,0 +1,7 @@
+module Userplex
+  module Models
+    type store_list_inventory_response = ::Hash[Symbol, Integer]
+
+    StoreListInventoryResponse: Userplex::Internal::Type::Converter
+  end
+end

@@ -1,0 +1,43 @@
+module Userplex
+  class Category = Userplex::Models::Category
+
+  class Order = Userplex::Models::Order
+
+  class Pet = Userplex::Models::Pet
+
+  class PetCreateParams = Userplex::Models::PetCreateParams
+
+  class PetDeleteParams = Userplex::Models::PetDeleteParams
+
+  class PetFindByStatusParams = Userplex::Models::PetFindByStatusParams
+
+  class PetFindByTagsParams = Userplex::Models::PetFindByTagsParams
+
+  class PetRetrieveParams = Userplex::Models::PetRetrieveParams
+
+  class PetUpdateByIDParams = Userplex::Models::PetUpdateByIDParams
+
+  class PetUpdateParams = Userplex::Models::PetUpdateParams
+
+  class PetUploadImageParams = Userplex::Models::PetUploadImageParams
+
+  module Store = Userplex::Models::Store
+
+  class StoreListInventoryParams = Userplex::Models::StoreListInventoryParams
+
+  class User = Userplex::Models::User
+
+  class UserCreateParams = Userplex::Models::UserCreateParams
+
+  class UserCreateWithListParams = Userplex::Models::UserCreateWithListParams
+
+  class UserDeleteParams = Userplex::Models::UserDeleteParams
+
+  class UserLoginParams = Userplex::Models::UserLoginParams
+
+  class UserLogoutParams = Userplex::Models::UserLogoutParams
+
+  class UserRetrieveParams = Userplex::Models::UserRetrieveParams
+
+  class UserUpdateParams = Userplex::Models::UserUpdateParams
+end

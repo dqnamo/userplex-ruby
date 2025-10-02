@@ -1,0 +1,7 @@
+module Userplex
+  module Models
+    type pet_find_by_status_response = ::Array[Userplex::Pet]
+
+    PetFindByStatusResponse: Userplex::Internal::Type::Converter
+  end
+end

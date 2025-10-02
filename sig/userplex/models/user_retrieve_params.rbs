@@ -1,0 +1,15 @@
+module Userplex
+  module Models
+    type user_retrieve_params =
+      {  } & Userplex::Internal::Type::request_parameters
+
+    class UserRetrieveParams < Userplex::Internal::Type::BaseModel
+      extend Userplex::Internal::Type::RequestParameters::Converter
+      include Userplex::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Userplex::request_opts) -> void
+
+      def to_hash: -> { request_options: Userplex::RequestOptions }
+    end
+  end
+end

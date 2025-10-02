@@ -1,0 +1,83 @@
+module Userplex
+  module Models
+    type pet =
+      {
+        name: String,
+        photo_urls: ::Array[String],
+        id: Integer,
+        category: Userplex::Category,
+        status: Userplex::Models::Pet::status,
+        tags: ::Array[Userplex::Pet::Tag]
+      }
+
+    class Pet < Userplex::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor photo_urls: ::Array[String]
+
+      attr_reader id: Integer?
+
+      def id=: (Integer) -> Integer
+
+      attr_reader category: Userplex::Category?
+
+      def category=: (Userplex::Category) -> Userplex::Category
+
+      attr_reader status: Userplex::Models::Pet::status?
+
+      def status=: (
+        Userplex::Models::Pet::status
+      ) -> Userplex::Models::Pet::status
+
+      attr_reader tags: ::Array[Userplex::Pet::Tag]?
+
+      def tags=: (::Array[Userplex::Pet::Tag]) -> ::Array[Userplex::Pet::Tag]
+
+      def initialize: (
+        name: String,
+        photo_urls: ::Array[String],
+        ?id: Integer,
+        ?category: Userplex::Category,
+        ?status: Userplex::Models::Pet::status,
+        ?tags: ::Array[Userplex::Pet::Tag]
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        photo_urls: ::Array[String],
+        id: Integer,
+        category: Userplex::Category,
+        status: Userplex::Models::Pet::status,
+        tags: ::Array[Userplex::Pet::Tag]
+      }
+
+      type status = :available | :pending | :sold
+
+      module Status
+        extend Userplex::Internal::Type::Enum
+
+        AVAILABLE: :available
+        PENDING: :pending
+        SOLD: :sold
+
+        def self?.values: -> ::Array[Userplex::Models::Pet::status]
+      end
+
+      type tag = { id: Integer, name: String }
+
+      class Tag < Userplex::Internal::Type::BaseModel
+        attr_reader id: Integer?
+
+        def id=: (Integer) -> Integer
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?id: Integer, ?name: String) -> void
+
+        def to_hash: -> { id: Integer, name: String }
+      end
+    end
+  end
+end
