@@ -1,5 +1,5 @@
 module Userplex
-  class EventTrackParams = Userplex::Models::EventTrackParams
+  class EventNewParams = Userplex::Models::EventNewParams
 
   class UserIdentifyParams = Userplex::Models::UserIdentifyParams
 end

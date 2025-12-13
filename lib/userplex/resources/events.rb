@@ -6,7 +6,7 @@ module Userplex
       # Creates or uses an existing event and records an event occurrence for an end
       # user. Requires a valid API key for authentication.
       #
-      # @overload track(name:, user_id:, timestamp: nil, request_options: {})
+      # @overload new(name:, user_id:, timestamp: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -16,16 +16,16 @@ module Userplex
       #
       # @param request_options [Userplex::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [Userplex::Models::EventTrackResponse]
+      # @return [Userplex::Models::EventNewResponse]
       #
-      # @see Userplex::Models::EventTrackParams
-      def track(params)
-        parsed, options = Userplex::EventTrackParams.dump_request(params)
+      # @see Userplex::Models::EventNewParams
+      def new(params)
+        parsed, options = Userplex::EventNewParams.dump_request(params)
         @client.request(
           method: :post,
           path: "api/event",
           body: parsed,
-          model: Userplex::Models::EventTrackResponse,
+          model: Userplex::Models::EventNewResponse,
           options: options
         )
       end

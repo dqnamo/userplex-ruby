@@ -2,8 +2,8 @@
 
 module Userplex
   module Models
-    # @see Userplex::Resources::Events#track
-    class EventTrackParams < Userplex::Internal::Type::BaseModel
+    # @see Userplex::Resources::Events#new
+    class EventNewParams < Userplex::Internal::Type::BaseModel
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
