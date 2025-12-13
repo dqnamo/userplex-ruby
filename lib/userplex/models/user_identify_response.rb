@@ -10,16 +10,8 @@ module Userplex
       #   @return [Boolean]
       required :success, Userplex::Internal::Type::Boolean
 
-      # @!attribute user_id
-      #   The ID of the identified user
-      #
-      #   @return [String]
-      required :user_id, String, api_name: :userId
-
-      # @!method initialize(success:, user_id:)
+      # @!method initialize(success:)
       #   @param success [Boolean] Operation success status
-      #
-      #   @param user_id [String] The ID of the identified user
     end
   end
 end
