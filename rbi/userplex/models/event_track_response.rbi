@@ -11,40 +11,18 @@ module Userplex
           )
         end
 
-      # The event ID
-      sig { returns(String) }
-      attr_accessor :event_id
-
-      # The event occurrence ID
-      sig { returns(String) }
-      attr_accessor :occurrence_id
-
-      # Whether the operation was successful
+      # Operation success status
       sig { returns(T::Boolean) }
       attr_accessor :success
 
-      sig do
-        params(
-          event_id: String,
-          occurrence_id: String,
-          success: T::Boolean
-        ).returns(T.attached_class)
-      end
+      sig { params(success: T::Boolean).returns(T.attached_class) }
       def self.new(
-        # The event ID
-        event_id:,
-        # The event occurrence ID
-        occurrence_id:,
-        # Whether the operation was successful
+        # Operation success status
         success:
       )
       end
 
-      sig do
-        override.returns(
-          { event_id: String, occurrence_id: String, success: T::Boolean }
-        )
-      end
+      sig { override.returns({ success: T::Boolean }) }
       def to_hash
       end
     end

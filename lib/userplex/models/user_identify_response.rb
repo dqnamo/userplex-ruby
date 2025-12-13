@@ -5,21 +5,21 @@ module Userplex
     # @see Userplex::Resources::Users#identify
     class UserIdentifyResponse < Userplex::Internal::Type::BaseModel
       # @!attribute success
-      #   Whether the operation was successful
+      #   Operation success status
       #
       #   @return [Boolean]
       required :success, Userplex::Internal::Type::Boolean
 
       # @!attribute user_id
-      #   The identified user ID
+      #   The ID of the identified user
       #
       #   @return [String]
       required :user_id, String, api_name: :userId
 
       # @!method initialize(success:, user_id:)
-      #   @param success [Boolean] Whether the operation was successful
+      #   @param success [Boolean] Operation success status
       #
-      #   @param user_id [String] The identified user ID
+      #   @param user_id [String] The ID of the identified user
     end
   end
 end

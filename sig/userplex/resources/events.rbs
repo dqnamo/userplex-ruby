@@ -2,9 +2,8 @@ module Userplex
   module Resources
     class Events
       def track: (
-        event: String,
+        name: String,
         user_id: String,
-        ?properties: ::Hash[Symbol, top?],
         ?timestamp: Time,
         ?request_options: Userplex::request_opts
       ) -> Userplex::Models::EventTrackResponse
