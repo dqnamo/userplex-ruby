@@ -440,8 +440,7 @@ module Userplex
         # @example
         #   # `user_identify_response` is a `Userplex::Models::UserIdentifyResponse`
         #   user_identify_response => {
-        #     success: success,
-        #     user_id: user_id
+        #     success: success
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

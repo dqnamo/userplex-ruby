@@ -15,22 +15,14 @@ module Userplex
       sig { returns(T::Boolean) }
       attr_accessor :success
 
-      # The ID of the identified user
-      sig { returns(String) }
-      attr_accessor :user_id
-
-      sig do
-        params(success: T::Boolean, user_id: String).returns(T.attached_class)
-      end
+      sig { params(success: T::Boolean).returns(T.attached_class) }
       def self.new(
         # Operation success status
-        success:,
-        # The ID of the identified user
-        user_id:
+        success:
       )
       end
 
-      sig { override.returns({ success: T::Boolean, user_id: String }) }
+      sig { override.returns({ success: T::Boolean }) }
       def to_hash
       end
     end

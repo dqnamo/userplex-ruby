@@ -14,8 +14,7 @@ class Userplex::Test::Resources::UsersTest < Userplex::Test::ResourceTest
 
     assert_pattern do
       response => {
-        success: Userplex::Internal::Type::Boolean,
-        user_id: String
+        success: Userplex::Internal::Type::Boolean
       }
     end
   end
