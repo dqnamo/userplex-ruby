@@ -11,11 +11,11 @@ module Userplex
           )
         end
 
-      # Whether the operation was successful
+      # Operation success status
       sig { returns(T::Boolean) }
       attr_accessor :success
 
-      # The identified user ID
+      # The ID of the identified user
       sig { returns(String) }
       attr_accessor :user_id
 
@@ -23,9 +23,9 @@ module Userplex
         params(success: T::Boolean, user_id: String).returns(T.attached_class)
       end
       def self.new(
-        # Whether the operation was successful
+        # Operation success status
         success:,
-        # The identified user ID
+        # The ID of the identified user
         user_id:
       )
       end

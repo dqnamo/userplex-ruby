@@ -1,42 +1,31 @@
 module Userplex
   module Models
     type event_track_params =
-      {
-        event: String,
-        user_id: String,
-        properties: ::Hash[Symbol, top?],
-        timestamp: Time
-      }
+      { name: String, user_id: String, timestamp: Time }
       & Userplex::Internal::Type::request_parameters
 
     class EventTrackParams < Userplex::Internal::Type::BaseModel
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
-      attr_accessor event: String
+      attr_accessor name: String
 
       attr_accessor user_id: String
-
-      attr_reader properties: ::Hash[Symbol, top?]?
-
-      def properties=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
 
       attr_reader timestamp: Time?
 
       def timestamp=: (Time) -> Time
 
       def initialize: (
-        event: String,
+        name: String,
         user_id: String,
-        ?properties: ::Hash[Symbol, top?],
         ?timestamp: Time,
         ?request_options: Userplex::request_opts
       ) -> void
 
       def to_hash: -> {
-        event: String,
+        name: String,
         user_id: String,
-        properties: ::Hash[Symbol, top?],
         timestamp: Time,
         request_options: Userplex::RequestOptions
       }

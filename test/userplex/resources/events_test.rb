@@ -6,7 +6,7 @@ class Userplex::Test::Resources::EventsTest < Userplex::Test::ResourceTest
   def test_track_required_params
     skip("Prism tests are disabled")
 
-    response = @userplex.events.track(event: "event", user_id: "userId")
+    response = @userplex.events.track(name: "name", user_id: "user_id")
 
     assert_pattern do
       response => Userplex::Models::EventTrackResponse
@@ -14,8 +14,6 @@ class Userplex::Test::Resources::EventsTest < Userplex::Test::ResourceTest
 
     assert_pattern do
       response => {
-        event_id: String,
-        occurrence_id: String,
         success: Userplex::Internal::Type::Boolean
       }
     end

@@ -1,22 +1,13 @@
 module Userplex
   module Models
-    type event_track_response =
-      { event_id: String, occurrence_id: String, success: bool }
+    type event_track_response = { success: bool }
 
     class EventTrackResponse < Userplex::Internal::Type::BaseModel
-      attr_accessor event_id: String
-
-      attr_accessor occurrence_id: String
-
       attr_accessor success: bool
 
-      def initialize: (
-        event_id: String,
-        occurrence_id: String,
-        success: bool
-      ) -> void
+      def initialize: (success: bool) -> void
 
-      def to_hash: -> { event_id: String, occurrence_id: String, success: bool }
+      def to_hash: -> { success: bool }
     end
   end
 end

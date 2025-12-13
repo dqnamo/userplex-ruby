@@ -11,20 +11,12 @@ module Userplex
           T.any(Userplex::EventTrackParams, Userplex::Internal::AnyHash)
         end
 
-      # Event name
       sig { returns(String) }
-      attr_accessor :event
+      attr_accessor :name
 
       # External user ID
       sig { returns(String) }
       attr_accessor :user_id
-
-      # Event metadata
-      sig { returns(T.nilable(T::Hash[Symbol, T.nilable(T.anything)])) }
-      attr_reader :properties
-
-      sig { params(properties: T::Hash[Symbol, T.nilable(T.anything)]).void }
-      attr_writer :properties
 
       # Event timestamp (ISO 8601)
       sig { returns(T.nilable(Time)) }
@@ -35,20 +27,16 @@ module Userplex
 
       sig do
         params(
-          event: String,
+          name: String,
           user_id: String,
-          properties: T::Hash[Symbol, T.nilable(T.anything)],
           timestamp: Time,
           request_options: Userplex::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Event name
-        event:,
+        name:,
         # External user ID
         user_id:,
-        # Event metadata
-        properties: nil,
         # Event timestamp (ISO 8601)
         timestamp: nil,
         request_options: {}
@@ -58,9 +46,8 @@ module Userplex
       sig do
         override.returns(
           {
-            event: String,
+            name: String,
             user_id: String,
-            properties: T::Hash[Symbol, T.nilable(T.anything)],
             timestamp: Time,
             request_options: Userplex::RequestOptions
           }
