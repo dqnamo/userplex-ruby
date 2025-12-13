@@ -1,19 +1,19 @@
 module Userplex
   module Models
-    type event_track_params =
+    type event_new_params =
       {
-        event: String,
+        name: String,
         user_id: String,
         properties: ::Hash[Symbol, top?],
         timestamp: Time
       }
       & Userplex::Internal::Type::request_parameters
 
-    class EventTrackParams < Userplex::Internal::Type::BaseModel
+    class EventNewParams < Userplex::Internal::Type::BaseModel
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
-      attr_accessor event: String
+      attr_accessor name: String
 
       attr_accessor user_id: String
 
@@ -26,7 +26,7 @@ module Userplex
       def timestamp=: (Time) -> Time
 
       def initialize: (
-        event: String,
+        name: String,
         user_id: String,
         ?properties: ::Hash[Symbol, top?],
         ?timestamp: Time,
@@ -34,7 +34,7 @@ module Userplex
       ) -> void
 
       def to_hash: -> {
-        event: String,
+        name: String,
         user_id: String,
         properties: ::Hash[Symbol, top?],
         timestamp: Time,

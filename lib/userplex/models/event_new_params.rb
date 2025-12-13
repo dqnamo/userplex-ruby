@@ -2,25 +2,24 @@
 
 module Userplex
   module Models
-    # @see Userplex::Resources::Events#track
-    class EventTrackParams < Userplex::Internal::Type::BaseModel
+    # @see Userplex::Resources::Events#new
+    class EventNewParams < Userplex::Internal::Type::BaseModel
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
-      # @!attribute event
-      #   Event name
+      # @!attribute name
       #
       #   @return [String]
-      required :event, String
+      required :name, String
 
       # @!attribute user_id
       #   External user ID
       #
       #   @return [String]
-      required :user_id, String, api_name: :userId
+      required :user_id, String
 
       # @!attribute properties
-      #   Event metadata
+      #   Additional event properties
       #
       #   @return [Hash{Symbol=>Object, nil}, nil]
       optional :properties, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
@@ -31,12 +30,12 @@ module Userplex
       #   @return [Time, nil]
       optional :timestamp, Time
 
-      # @!method initialize(event:, user_id:, properties: nil, timestamp: nil, request_options: {})
-      #   @param event [String] Event name
+      # @!method initialize(name:, user_id:, properties: nil, timestamp: nil, request_options: {})
+      #   @param name [String]
       #
       #   @param user_id [String] External user ID
       #
-      #   @param properties [Hash{Symbol=>Object, nil}] Event metadata
+      #   @param properties [Hash{Symbol=>Object, nil}] Additional event properties
       #
       #   @param timestamp [Time] Event timestamp (ISO 8601)
       #

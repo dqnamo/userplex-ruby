@@ -16,10 +16,11 @@ module Userplex
         class << self
           # @api private
           #
+          # @param cert_store [OpenSSL::X509::Store]
           # @param url [URI::Generic]
           #
           # @return [Net::HTTP]
-          def connect(url)
+          def connect(cert_store:, url:)
             port =
               case [url.port, url.scheme]
               in [Integer, _]
@@ -33,6 +34,8 @@ module Userplex
             Net::HTTP.new(url.host, port).tap do
               _1.use_ssl = %w[https wss].include?(url.scheme)
               _1.max_retries = 0
+
+              (_1.cert_store = cert_store) if _1.use_ssl?
             end
           end
 
@@ -102,7 +105,7 @@ module Userplex
           pool =
             @mutex.synchronize do
               @pools[origin] ||= ConnectionPool.new(size: @size) do
-                self.class.connect(url)
+                self.class.connect(cert_store: @cert_store, url: url)
               end
             end
 
@@ -128,40 +131,48 @@ module Userplex
           url, deadline = request.fetch_values(:url, :deadline)
 
           req = nil
-          eof = false
           finished = false
-          closing = nil
 
           # rubocop:disable Metrics/BlockLength
           enum = Enumerator.new do |y|
             next if finished
 
             with_pool(url, deadline: deadline) do |conn|
-              req, closing = self.class.build_request(request) do
-                self.class.calibrate_socket_timeout(conn, deadline)
-              end
-
-              self.class.calibrate_socket_timeout(conn, deadline)
-              unless conn.started?
-                conn.keep_alive_timeout = self.class::KEEP_ALIVE_TIMEOUT
-                conn.start
-              end
-
-              self.class.calibrate_socket_timeout(conn, deadline)
-              conn.request(req) do |rsp|
-                y << [req, rsp]
-                break if finished
-
-                rsp.read_body do |bytes|
-                  y << bytes.force_encoding(Encoding::BINARY)
-                  break if finished
+              eof = false
+              closing = nil
+              ::Thread.handle_interrupt(Object => :never) do
+                ::Thread.handle_interrupt(Object => :immediate) do
+                  req, closing = self.class.build_request(request) do
+                    self.class.calibrate_socket_timeout(conn, deadline)
+                  end
 
                   self.class.calibrate_socket_timeout(conn, deadline)
+                  unless conn.started?
+                    conn.keep_alive_timeout = self.class::KEEP_ALIVE_TIMEOUT
+                    conn.start
+                  end
+
+                  self.class.calibrate_socket_timeout(conn, deadline)
+                  conn.request(req) do |rsp|
+                    y << [req, rsp]
+                    break if finished
+
+                    rsp.read_body do |bytes|
+                      y << bytes.force_encoding(Encoding::BINARY)
+                      break if finished
+
+                      self.class.calibrate_socket_timeout(conn, deadline)
+                    end
+                    eof = true
+                  end
                 end
-                eof = true
+              ensure
+                begin
+                  conn.finish if !eof && conn&.started?
+                ensure
+                  closing&.call
+                end
               end
-            ensure
-              conn.finish if !eof && conn&.started?
             end
           rescue Timeout::Error
             raise Userplex::Errors::APITimeoutError.new(url: url, request: req)
@@ -174,8 +185,6 @@ module Userplex
           body = Userplex::Internal::Util.fused_enum(enum, external: true) do
             finished = true
             loop { enum.next }
-          ensure
-            closing&.call
           end
           [Integer(response.code), response, body]
         end
@@ -186,6 +195,7 @@ module Userplex
         def initialize(size: self.class::DEFAULT_MAX_CONNECTIONS)
           @mutex = Mutex.new
           @size = size
+          @cert_store = OpenSSL::X509::Store.new.tap(&:set_default_paths)
           @pools = {}
         end
 

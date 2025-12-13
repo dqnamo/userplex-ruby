@@ -7,19 +7,18 @@ module Userplex
       # user. Requires a valid API key for authentication.
       sig do
         params(
-          event: String,
+          name: String,
           user_id: String,
           properties: T::Hash[Symbol, T.nilable(T.anything)],
           timestamp: Time,
           request_options: Userplex::RequestOptions::OrHash
-        ).returns(Userplex::Models::EventTrackResponse)
+        ).returns(Userplex::Models::EventNewResponse)
       end
-      def track(
-        # Event name
-        event:,
+      def new(
+        name:,
         # External user ID
         user_id:,
-        # Event metadata
+        # Additional event properties
         properties: nil,
         # Event timestamp (ISO 8601)
         timestamp: nil,

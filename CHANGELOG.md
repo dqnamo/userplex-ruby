@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.2.0 (2025-12-13)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/dqnamo/userplex-ruby/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([38d5fdf](https://github.com/dqnamo/userplex-ruby/commit/38d5fdf26b03f9047a693fa55de2d89a07a74517))
+* **api:** api update ([f2a58a2](https://github.com/dqnamo/userplex-ruby/commit/f2a58a206f7423ef43adcc556ca5aeedf49c22d2))
+* **api:** manual updates ([f265a76](https://github.com/dqnamo/userplex-ruby/commit/f265a763bf483a0c580c674f9e14a46bda46580a))
+* handle thread interrupts in the core HTTP client ([56666de](https://github.com/dqnamo/userplex-ruby/commit/56666de917a9f0da6563ea9f01d40a5bf8887e5a))
+
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([2af0223](https://github.com/dqnamo/userplex-ruby/commit/2af02232fad02217c0b405ff0b14248ce6e38d6d))
+* better thread safety via early initializing SSL store during HTTP client creation ([e7b8153](https://github.com/dqnamo/userplex-ruby/commit/e7b81536d6e788820a3b4ff29c951a647cc8af32))
+* should not reuse buffers for `IO.copy_stream` interop ([5aec1c1](https://github.com/dqnamo/userplex-ruby/commit/5aec1c1aa21eb4ef9c2f7b8bf7e373d1baeea196))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([f77dcad](https://github.com/dqnamo/userplex-ruby/commit/f77dcad1e0e2b74aa37e142472174425388eb81f))
+* explicitly require "base64" gem ([47c50c3](https://github.com/dqnamo/userplex-ruby/commit/47c50c3fac9126f56a525153edeebfc727e1898d))
+* ignore linter error for tests having large collections ([792c73c](https://github.com/dqnamo/userplex-ruby/commit/792c73c12aa1183d50b7e67c09a11d8f8997b524))
+
 ## 0.1.0 (2025-10-02)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/dqnamo/userplex-ruby/compare/v0.0.1...v0.1.0)
