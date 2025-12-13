@@ -6,13 +6,13 @@ module Userplex
       # Creates or updates an end user in InstantDB with the provided information.
       # Requires a valid API key for authentication.
       #
-      # @overload identify(email:, name:, user_id:, properties: nil, request_options: {})
+      # @overload identify(user_id:, email: nil, name: nil, properties: nil, request_options: {})
+      #
+      # @param user_id [String] Unique identifier for the user
       #
       # @param email [String] User email address
       #
       # @param name [String] User full name
-      #
-      # @param user_id [String] Unique identifier for the user
       #
       # @param properties [Hash{Symbol=>Object, nil}] Additional user properties
       #
