@@ -2,13 +2,13 @@
 
 module Userplex
   module Models
-    class EventTrackParams < Userplex::Internal::Type::BaseModel
+    class EventNewParams < Userplex::Internal::Type::BaseModel
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(Userplex::EventTrackParams, Userplex::Internal::AnyHash)
+          T.any(Userplex::EventNewParams, Userplex::Internal::AnyHash)
         end
 
       sig { returns(String) }

@@ -2,13 +2,10 @@
 
 module Userplex
   module Models
-    class EventTrackResponse < Userplex::Internal::Type::BaseModel
+    class EventNewResponse < Userplex::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(
-            Userplex::Models::EventTrackResponse,
-            Userplex::Internal::AnyHash
-          )
+          T.any(Userplex::Models::EventNewResponse, Userplex::Internal::AnyHash)
         end
 
       # Operation success status

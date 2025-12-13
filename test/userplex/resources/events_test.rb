@@ -3,13 +3,13 @@
 require_relative "../test_helper"
 
 class Userplex::Test::Resources::EventsTest < Userplex::Test::ResourceTest
-  def test_track_required_params
+  def test_new_required_params
     skip("Prism tests are disabled")
 
-    response = @userplex.events.track(name: "name", user_id: "user_id")
+    response = @userplex.events.new(name: "name", user_id: "user_id")
 
     assert_pattern do
-      response => Userplex::Models::EventTrackResponse
+      response => Userplex::Models::EventNewResponse
     end
 
     assert_pattern do

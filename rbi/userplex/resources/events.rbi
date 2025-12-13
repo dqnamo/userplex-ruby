@@ -11,9 +11,9 @@ module Userplex
           user_id: String,
           timestamp: Time,
           request_options: Userplex::RequestOptions::OrHash
-        ).returns(Userplex::Models::EventTrackResponse)
+        ).returns(Userplex::Models::EventNewResponse)
       end
-      def track(
+      def new(
         name:,
         # External user ID
         user_id:,

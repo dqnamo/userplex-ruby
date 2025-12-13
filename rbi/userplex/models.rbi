@@ -1,7 +1,7 @@
 # typed: strong
 
 module Userplex
-  EventTrackParams = Userplex::Models::EventTrackParams
+  EventNewParams = Userplex::Models::EventNewParams
 
   UserIdentifyParams = Userplex::Models::UserIdentifyParams
 end

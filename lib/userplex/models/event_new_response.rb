@@ -2,8 +2,8 @@
 
 module Userplex
   module Models
-    # @see Userplex::Resources::Events#track
-    class EventTrackResponse < Userplex::Internal::Type::BaseModel
+    # @see Userplex::Resources::Events#new
+    class EventNewResponse < Userplex::Internal::Type::BaseModel
       # @!attribute success
       #   Operation success status
       #

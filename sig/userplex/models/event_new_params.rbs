@@ -1,10 +1,10 @@
 module Userplex
   module Models
-    type event_track_params =
+    type event_new_params =
       { name: String, user_id: String, timestamp: Time }
       & Userplex::Internal::Type::request_parameters
 
-    class EventTrackParams < Userplex::Internal::Type::BaseModel
+    class EventNewParams < Userplex::Internal::Type::BaseModel
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
