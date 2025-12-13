@@ -9,6 +9,7 @@ module Userplex
         params(
           name: String,
           user_id: String,
+          properties: T::Hash[Symbol, T.nilable(T.anything)],
           timestamp: Time,
           request_options: Userplex::RequestOptions::OrHash
         ).returns(Userplex::Models::EventNewResponse)
@@ -17,6 +18,8 @@ module Userplex
         name:,
         # External user ID
         user_id:,
+        # Additional event properties
+        properties: nil,
         # Event timestamp (ISO 8601)
         timestamp: nil,
         request_options: {}

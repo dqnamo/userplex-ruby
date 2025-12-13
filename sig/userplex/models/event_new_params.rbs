@@ -1,7 +1,12 @@
 module Userplex
   module Models
     type event_new_params =
-      { name: String, user_id: String, timestamp: Time }
+      {
+        name: String,
+        user_id: String,
+        properties: ::Hash[Symbol, top?],
+        timestamp: Time
+      }
       & Userplex::Internal::Type::request_parameters
 
     class EventNewParams < Userplex::Internal::Type::BaseModel
@@ -12,6 +17,10 @@ module Userplex
 
       attr_accessor user_id: String
 
+      attr_reader properties: ::Hash[Symbol, top?]?
+
+      def properties=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
+
       attr_reader timestamp: Time?
 
       def timestamp=: (Time) -> Time
@@ -19,6 +28,7 @@ module Userplex
       def initialize: (
         name: String,
         user_id: String,
+        ?properties: ::Hash[Symbol, top?],
         ?timestamp: Time,
         ?request_options: Userplex::request_opts
       ) -> void
@@ -26,6 +36,7 @@ module Userplex
       def to_hash: -> {
         name: String,
         user_id: String,
+        properties: ::Hash[Symbol, top?],
         timestamp: Time,
         request_options: Userplex::RequestOptions
       }

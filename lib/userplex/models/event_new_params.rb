@@ -18,16 +18,24 @@ module Userplex
       #   @return [String]
       required :user_id, String
 
+      # @!attribute properties
+      #   Additional event properties
+      #
+      #   @return [Hash{Symbol=>Object, nil}, nil]
+      optional :properties, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
+
       # @!attribute timestamp
       #   Event timestamp (ISO 8601)
       #
       #   @return [Time, nil]
       optional :timestamp, Time
 
-      # @!method initialize(name:, user_id:, timestamp: nil, request_options: {})
+      # @!method initialize(name:, user_id:, properties: nil, timestamp: nil, request_options: {})
       #   @param name [String]
       #
       #   @param user_id [String] External user ID
+      #
+      #   @param properties [Hash{Symbol=>Object, nil}] Additional event properties
       #
       #   @param timestamp [Time] Event timestamp (ISO 8601)
       #
