@@ -2,9 +2,9 @@ module Userplex
   module Resources
     class Users
       def identify: (
-        email: String,
-        name: String,
         user_id: String,
+        ?email: String,
+        ?name: String,
         ?properties: ::Hash[Symbol, top?],
         ?request_options: Userplex::request_opts
       ) -> Userplex::Models::UserIdentifyResponse

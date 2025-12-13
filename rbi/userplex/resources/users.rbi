@@ -7,20 +7,20 @@ module Userplex
       # Requires a valid API key for authentication.
       sig do
         params(
+          user_id: String,
           email: String,
           name: String,
-          user_id: String,
           properties: T::Hash[Symbol, T.nilable(T.anything)],
           request_options: Userplex::RequestOptions::OrHash
         ).returns(Userplex::Models::UserIdentifyResponse)
       end
       def identify(
-        # User email address
-        email:,
-        # User full name
-        name:,
         # Unique identifier for the user
         user_id:,
+        # User email address
+        email: nil,
+        # User full name
+        name: nil,
         # Additional user properties
         properties: nil,
         request_options: {}
