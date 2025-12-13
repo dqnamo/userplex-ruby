@@ -6,7 +6,7 @@ class Userplex::Test::Resources::UsersTest < Userplex::Test::ResourceTest
   def test_identify_required_params
     skip("Prism tests are disabled")
 
-    response = @userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+    response = @userplex.users.identify(user_id: "user_id")
 
     assert_pattern do
       response => Userplex::Models::UserIdentifyResponse

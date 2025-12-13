@@ -40,7 +40,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Userplex::Errors::InternalServerError) do
-      userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+      userplex.users.identify(user_id: "user_id")
     end
 
     assert_requested(:any, /./, times: 3)
@@ -52,7 +52,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(Userplex::Errors::InternalServerError) do
-      userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+      userplex.users.identify(user_id: "user_id")
     end
 
     assert_requested(:any, /./, times: 4)
@@ -64,12 +64,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Userplex::Errors::InternalServerError) do
-      userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
-        request_options: {max_retries: 3}
-      )
+      userplex.users.identify(user_id: "user_id", request_options: {max_retries: 3})
     end
 
     assert_requested(:any, /./, times: 4)
@@ -81,12 +76,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(Userplex::Errors::InternalServerError) do
-      userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
-        request_options: {max_retries: 4}
-      )
+      userplex.users.identify(user_id: "user_id", request_options: {max_retries: 4})
     end
 
     assert_requested(:any, /./, times: 5)
@@ -102,7 +92,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(Userplex::Errors::InternalServerError) do
-      userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+      userplex.users.identify(user_id: "user_id")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -120,7 +110,7 @@ class UserplexTest < Minitest::Test
 
     assert_raises(Userplex::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
-      userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+      userplex.users.identify(user_id: "user_id")
       Thread.current.thread_variable_set(:time_now, nil)
     end
 
@@ -138,7 +128,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(Userplex::Errors::InternalServerError) do
-      userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+      userplex.users.identify(user_id: "user_id")
     end
 
     assert_requested(:any, /./, times: 2)
@@ -151,7 +141,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Userplex::Errors::InternalServerError) do
-      userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+      userplex.users.identify(user_id: "user_id")
     end
 
     3.times do
@@ -166,9 +156,7 @@ class UserplexTest < Minitest::Test
 
     assert_raises(Userplex::Errors::InternalServerError) do
       userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
+        user_id: "user_id",
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
     end
@@ -185,9 +173,7 @@ class UserplexTest < Minitest::Test
 
     assert_raises(Userplex::Errors::InternalServerError) do
       userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
+        user_id: "user_id",
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
     end
@@ -209,12 +195,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Userplex::Errors::APIConnectionError) do
-      userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
-        request_options: {extra_headers: {}}
-      )
+      userplex.users.identify(user_id: "user_id", request_options: {extra_headers: {}})
     end
 
     recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
@@ -243,12 +224,7 @@ class UserplexTest < Minitest::Test
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     assert_raises(Userplex::Errors::APIConnectionError) do
-      userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
-        request_options: {extra_headers: {}}
-      )
+      userplex.users.identify(user_id: "user_id", request_options: {extra_headers: {}})
     end
 
     assert_requested(:get, "http://localhost/redirected", times: Userplex::Client::MAX_REDIRECTS) do
@@ -273,9 +249,7 @@ class UserplexTest < Minitest::Test
 
     assert_raises(Userplex::Errors::APIConnectionError) do
       userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
+        user_id: "user_id",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -305,9 +279,7 @@ class UserplexTest < Minitest::Test
 
     assert_raises(Userplex::Errors::APIConnectionError) do
       userplex.users.identify(
-        email: "dev@stainless.com",
-        name: "name",
-        user_id: "userId",
+        user_id: "user_id",
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -323,7 +295,7 @@ class UserplexTest < Minitest::Test
 
     userplex = Userplex::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    userplex.users.identify(email: "dev@stainless.com", name: "name", user_id: "userId")
+    userplex.users.identify(user_id: "user_id")
 
     assert_requested(:any, /./) do |req|
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")

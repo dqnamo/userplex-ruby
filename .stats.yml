@@ -1,4 +1,4 @@
 configured_endpoints: 2
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/hyperaide%2Fuserplex-1032d71db54b95996e0601c76e58f7c654fcf3cf25c242e3dfd135e20c6e7228.yml
-openapi_spec_hash: d8dd397e0d3cab78c0b36324ce858b14
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/hyperaide%2Fuserplex-dac90da299adbb7770de8873cc265d3b39aa1350f036693e1893e05e26d1def2.yml
+openapi_spec_hash: f6db0f58f1e534a290249107faaf503f
 config_hash: 62b826d6c334adb56ca0bfaf5a3fe909
