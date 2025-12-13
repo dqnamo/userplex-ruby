@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 (2025-12-13)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/dqnamo/userplex-ruby/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** manual updates ([1bc8505](https://github.com/dqnamo/userplex-ruby/commit/1bc8505bd8eb427c5e6af270da8c70af8d7a2c75))
+
 ## 0.2.0 (2025-12-13)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/dqnamo/userplex-ruby/compare/v0.1.0...v0.2.0)
