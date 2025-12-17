@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.1 (2025-12-17)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/dqnamo/userplex-ruby/compare/v0.6.0...v0.6.1)
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([f74edb2](https://github.com/dqnamo/userplex-ruby/commit/f74edb20ed15700ce068783537151d3f9350d3e3))
+
 ## 0.6.0 (2025-12-13)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/dqnamo/userplex-ruby/compare/v0.5.0...v0.6.0)
