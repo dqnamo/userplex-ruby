@@ -1,0 +1,52 @@
+module Userplex
+  module Models
+    type log_new_params =
+      {
+        name: String,
+        user_id: String,
+        data: ::Hash[Symbol, top?],
+        properties: ::Hash[Symbol, top?],
+        timestamp: Time
+      }
+      & Userplex::Internal::Type::request_parameters
+
+    class LogNewParams < Userplex::Internal::Type::BaseModel
+      extend Userplex::Internal::Type::RequestParameters::Converter
+      include Userplex::Internal::Type::RequestParameters
+
+      attr_accessor name: String
+
+      attr_accessor user_id: String
+
+      attr_reader data: ::Hash[Symbol, top?]?
+
+      def data=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
+
+      attr_reader properties: ::Hash[Symbol, top?]?
+
+      def properties=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
+
+      attr_reader timestamp: Time?
+
+      def timestamp=: (Time) -> Time
+
+      def initialize: (
+        name: String,
+        user_id: String,
+        ?data: ::Hash[Symbol, top?],
+        ?properties: ::Hash[Symbol, top?],
+        ?timestamp: Time,
+        ?request_options: Userplex::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        user_id: String,
+        data: ::Hash[Symbol, top?],
+        properties: ::Hash[Symbol, top?],
+        timestamp: Time,
+        request_options: Userplex::RequestOptions
+      }
+    end
+  end
+end

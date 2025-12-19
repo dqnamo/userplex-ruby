@@ -1,7 +1,0 @@
-module Userplex
-  module Resources
-    class Events
-      def initialize: (client: Userplex::Client) -> void
-    end
-  end
-end

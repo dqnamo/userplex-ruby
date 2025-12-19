@@ -1,0 +1,15 @@
+module Userplex
+  module Models
+    type log_batch_response = { count: Float, success: bool }
+
+    class LogBatchResponse < Userplex::Internal::Type::BaseModel
+      attr_accessor count: Float
+
+      attr_accessor success: bool
+
+      def initialize: (count: Float, success: bool) -> void
+
+      def to_hash: -> { count: Float, success: bool }
+    end
+  end
+end
