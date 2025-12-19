@@ -1,5 +1,3 @@
 module Userplex
-  class EventNewParams = Userplex::Models::EventNewParams
-
   class UserIdentifyParams = Userplex::Models::UserIdentifyParams
 end

@@ -39,7 +39,5 @@ module Userplex
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
-  EventNewParams = Userplex::Models::EventNewParams
-
   UserIdentifyParams = Userplex::Models::UserIdentifyParams
 end
