@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.2 (2025-12-19)
+
+Full Changelog: [v0.6.1...v0.6.2](https://github.com/dqnamo/userplex-ruby/compare/v0.6.1...v0.6.2)
+
+### Bug Fixes
+
+* issue where json.parse errors when receiving HTTP 204 with nobody ([a4b0ce0](https://github.com/dqnamo/userplex-ruby/commit/a4b0ce01f81053fb2b03348ead1ef686fe2c53b1))
+
 ## 0.6.1 (2025-12-17)
 
 Full Changelog: [v0.6.0...v0.6.1](https://github.com/dqnamo/userplex-ruby/compare/v0.6.0...v0.6.1)
