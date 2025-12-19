@@ -1,3 +1,7 @@
 module Userplex
+  class LogBatchParams = Userplex::Models::LogBatchParams
+
+  class LogNewParams = Userplex::Models::LogNewParams
+
   class UserIdentifyParams = Userplex::Models::UserIdentifyParams
 end
