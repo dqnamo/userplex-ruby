@@ -22,8 +22,8 @@ module Userplex
     # @return [Userplex::Resources::Users]
     attr_reader :users
 
-    # @return [Userplex::Resources::Events]
-    attr_reader :events
+    # @return [Userplex::Resources::Logs]
+    attr_reader :logs
 
     # @api private
     #
@@ -74,7 +74,7 @@ module Userplex
       )
 
       @users = Userplex::Resources::Users.new(client: self)
-      @events = Userplex::Resources::Events.new(client: self)
+      @logs = Userplex::Resources::Logs.new(client: self)
     end
   end
 end
