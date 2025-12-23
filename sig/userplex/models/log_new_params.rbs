@@ -3,10 +3,9 @@ module Userplex
     type log_new_params =
       {
         name: String,
-        user_id: String,
-        data: ::Hash[Symbol, top?],
-        properties: ::Hash[Symbol, top?],
-        timestamp: Time
+        data: ::Hash[Symbol, top],
+        timestamp: Time,
+        user_id: String
       }
       & Userplex::Internal::Type::request_parameters
 
@@ -16,35 +15,31 @@ module Userplex
 
       attr_accessor name: String
 
-      attr_accessor user_id: String
+      attr_reader data: ::Hash[Symbol, top]?
 
-      attr_reader data: ::Hash[Symbol, top?]?
-
-      def data=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
-
-      attr_reader properties: ::Hash[Symbol, top?]?
-
-      def properties=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
+      def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
       attr_reader timestamp: Time?
 
       def timestamp=: (Time) -> Time
 
+      attr_reader user_id: String?
+
+      def user_id=: (String) -> String
+
       def initialize: (
         name: String,
-        user_id: String,
-        ?data: ::Hash[Symbol, top?],
-        ?properties: ::Hash[Symbol, top?],
+        ?data: ::Hash[Symbol, top],
         ?timestamp: Time,
+        ?user_id: String,
         ?request_options: Userplex::request_opts
       ) -> void
 
       def to_hash: -> {
         name: String,
-        user_id: String,
-        data: ::Hash[Symbol, top?],
-        properties: ::Hash[Symbol, top?],
+        data: ::Hash[Symbol, top],
         timestamp: Time,
+        user_id: String,
         request_options: Userplex::RequestOptions
       }
     end

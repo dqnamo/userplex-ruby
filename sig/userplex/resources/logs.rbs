@@ -2,16 +2,15 @@ module Userplex
   module Resources
     class Logs
       def batch: (
-        logs: ::Array[Userplex::LogBatchParams::Log],
+        ?body: ::Array[Userplex::LogBatchParams::Body],
         ?request_options: Userplex::request_opts
       ) -> Userplex::Models::LogBatchResponse
 
       def new: (
         name: String,
-        user_id: String,
-        ?data: ::Hash[Symbol, top?],
-        ?properties: ::Hash[Symbol, top?],
+        ?data: ::Hash[Symbol, top],
         ?timestamp: Time,
+        ?user_id: String,
         ?request_options: Userplex::request_opts
       ) -> Userplex::Models::LogNewResponse
 

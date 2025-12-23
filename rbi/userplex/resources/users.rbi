@@ -3,26 +3,24 @@
 module Userplex
   module Resources
     class Users
-      # Creates or updates an end user in InstantDB with the provided information.
-      # Requires a valid API key for authentication.
       sig do
         params(
           user_id: String,
+          attributes: T::Hash[Symbol, T.anything],
           email: String,
           name: String,
-          properties: T::Hash[Symbol, T.nilable(T.anything)],
           request_options: Userplex::RequestOptions::OrHash
         ).returns(Userplex::Models::UserIdentifyResponse)
       end
       def identify(
-        # Unique identifier for the user
+        # External user ID
         user_id:,
-        # User email address
+        # Additional user attributes
+        attributes: nil,
+        # User email
         email: nil,
-        # User full name
+        # User name
         name: nil,
-        # Additional user properties
-        properties: nil,
         request_options: {}
       )
       end

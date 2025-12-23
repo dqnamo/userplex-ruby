@@ -1,65 +1,64 @@
 module Userplex
   module Models
     type log_batch_params =
-      { logs: ::Array[Userplex::LogBatchParams::Log] }
+      { body: ::Array[Userplex::LogBatchParams::Body] }
       & Userplex::Internal::Type::request_parameters
 
     class LogBatchParams < Userplex::Internal::Type::BaseModel
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
-      attr_accessor logs: ::Array[Userplex::LogBatchParams::Log]
+      attr_reader body: ::Array[Userplex::LogBatchParams::Body]?
+
+      def body=: (
+        ::Array[Userplex::LogBatchParams::Body]
+      ) -> ::Array[Userplex::LogBatchParams::Body]
 
       def initialize: (
-        logs: ::Array[Userplex::LogBatchParams::Log],
+        ?body: ::Array[Userplex::LogBatchParams::Body],
         ?request_options: Userplex::request_opts
       ) -> void
 
       def to_hash: -> {
-        logs: ::Array[Userplex::LogBatchParams::Log],
+        body: ::Array[Userplex::LogBatchParams::Body],
         request_options: Userplex::RequestOptions
       }
 
-      type log =
+      type body =
         {
           name: String,
-          user_id: String,
-          data: ::Hash[Symbol, top?],
-          properties: ::Hash[Symbol, top?],
-          timestamp: Time
+          data: ::Hash[Symbol, top],
+          timestamp: Time,
+          user_id: String
         }
 
-      class Log < Userplex::Internal::Type::BaseModel
+      class Body < Userplex::Internal::Type::BaseModel
         attr_accessor name: String
 
-        attr_accessor user_id: String
+        attr_reader data: ::Hash[Symbol, top]?
 
-        attr_reader data: ::Hash[Symbol, top?]?
-
-        def data=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
-
-        attr_reader properties: ::Hash[Symbol, top?]?
-
-        def properties=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
+        def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
 
         attr_reader timestamp: Time?
 
         def timestamp=: (Time) -> Time
 
+        attr_reader user_id: String?
+
+        def user_id=: (String) -> String
+
         def initialize: (
           name: String,
-          user_id: String,
-          ?data: ::Hash[Symbol, top?],
-          ?properties: ::Hash[Symbol, top?],
-          ?timestamp: Time
+          ?data: ::Hash[Symbol, top],
+          ?timestamp: Time,
+          ?user_id: String
         ) -> void
 
         def to_hash: -> {
           name: String,
-          user_id: String,
-          data: ::Hash[Symbol, top?],
-          properties: ::Hash[Symbol, top?],
-          timestamp: Time
+          data: ::Hash[Symbol, top],
+          timestamp: Time,
+          user_id: String
         }
       end
     end
