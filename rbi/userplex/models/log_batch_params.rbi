@@ -11,19 +11,24 @@ module Userplex
           T.any(Userplex::LogBatchParams, Userplex::Internal::AnyHash)
         end
 
-      # List of logs to track
-      sig { returns(T::Array[Userplex::LogBatchParams::Log]) }
-      attr_accessor :logs
+      # A list of logs to ingest
+      sig { returns(T.nilable(T::Array[Userplex::LogBatchParams::Body])) }
+      attr_reader :body
+
+      sig do
+        params(body: T::Array[Userplex::LogBatchParams::Body::OrHash]).void
+      end
+      attr_writer :body
 
       sig do
         params(
-          logs: T::Array[Userplex::LogBatchParams::Log::OrHash],
+          body: T::Array[Userplex::LogBatchParams::Body::OrHash],
           request_options: Userplex::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # List of logs to track
-        logs:,
+        # A list of logs to ingest
+        body: nil,
         request_options: {}
       )
       end
@@ -31,7 +36,7 @@ module Userplex
       sig do
         override.returns(
           {
-            logs: T::Array[Userplex::LogBatchParams::Log],
+            body: T::Array[Userplex::LogBatchParams::Body],
             request_options: Userplex::RequestOptions
           }
         )
@@ -39,32 +44,22 @@ module Userplex
       def to_hash
       end
 
-      class Log < Userplex::Internal::Type::BaseModel
+      class Body < Userplex::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(Userplex::LogBatchParams::Log, Userplex::Internal::AnyHash)
+            T.any(Userplex::LogBatchParams::Body, Userplex::Internal::AnyHash)
           end
 
+        # Log name
         sig { returns(String) }
         attr_accessor :name
 
-        # External user ID
-        sig { returns(String) }
-        attr_accessor :user_id
-
         # Additional log data
-        sig { returns(T.nilable(T::Hash[Symbol, T.nilable(T.anything)])) }
+        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
         attr_reader :data
 
-        sig { params(data: T::Hash[Symbol, T.nilable(T.anything)]).void }
+        sig { params(data: T::Hash[Symbol, T.anything]).void }
         attr_writer :data
-
-        # Alias for data, for compatibility
-        sig { returns(T.nilable(T::Hash[Symbol, T.nilable(T.anything)])) }
-        attr_reader :properties
-
-        sig { params(properties: T::Hash[Symbol, T.nilable(T.anything)]).void }
-        attr_writer :properties
 
         # Log timestamp (ISO 8601)
         sig { returns(T.nilable(Time)) }
@@ -73,25 +68,30 @@ module Userplex
         sig { params(timestamp: Time).void }
         attr_writer :timestamp
 
+        # External user ID
+        sig { returns(T.nilable(String)) }
+        attr_reader :user_id
+
+        sig { params(user_id: String).void }
+        attr_writer :user_id
+
         sig do
           params(
             name: String,
-            user_id: String,
-            data: T::Hash[Symbol, T.nilable(T.anything)],
-            properties: T::Hash[Symbol, T.nilable(T.anything)],
-            timestamp: Time
+            data: T::Hash[Symbol, T.anything],
+            timestamp: Time,
+            user_id: String
           ).returns(T.attached_class)
         end
         def self.new(
+          # Log name
           name:,
-          # External user ID
-          user_id:,
           # Additional log data
           data: nil,
-          # Alias for data, for compatibility
-          properties: nil,
           # Log timestamp (ISO 8601)
-          timestamp: nil
+          timestamp: nil,
+          # External user ID
+          user_id: nil
         )
         end
 
@@ -99,10 +99,9 @@ module Userplex
           override.returns(
             {
               name: String,
-              user_id: String,
-              data: T::Hash[Symbol, T.nilable(T.anything)],
-              properties: T::Hash[Symbol, T.nilable(T.anything)],
-              timestamp: Time
+              data: T::Hash[Symbol, T.anything],
+              timestamp: Time,
+              user_id: String
             }
           )
         end

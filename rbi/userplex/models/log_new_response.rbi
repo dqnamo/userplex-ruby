@@ -8,15 +8,11 @@ module Userplex
           T.any(Userplex::Models::LogNewResponse, Userplex::Internal::AnyHash)
         end
 
-      # Operation success status
       sig { returns(T::Boolean) }
       attr_accessor :success
 
       sig { params(success: T::Boolean).returns(T.attached_class) }
-      def self.new(
-        # Operation success status
-        success:
-      )
+      def self.new(success:)
       end
 
       sig { override.returns({ success: T::Boolean }) }

@@ -3,10 +3,10 @@
 require_relative "../test_helper"
 
 class Userplex::Test::Resources::LogsTest < Userplex::Test::ResourceTest
-  def test_batch_required_params
+  def test_batch
     skip("Prism tests are disabled")
 
-    response = @userplex.logs.batch(logs: [{name: "name", user_id: "user_id"}])
+    response = @userplex.logs.batch
 
     assert_pattern do
       response => Userplex::Models::LogBatchResponse
@@ -14,7 +14,6 @@ class Userplex::Test::Resources::LogsTest < Userplex::Test::ResourceTest
 
     assert_pattern do
       response => {
-        count: Float,
         success: Userplex::Internal::Type::Boolean
       }
     end
@@ -23,7 +22,7 @@ class Userplex::Test::Resources::LogsTest < Userplex::Test::ResourceTest
   def test_new_required_params
     skip("Prism tests are disabled")
 
-    response = @userplex.logs.new(name: "name", user_id: "user_id")
+    response = @userplex.logs.new(name: "name")
 
     assert_pattern do
       response => Userplex::Models::LogNewResponse

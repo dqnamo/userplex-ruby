@@ -3,43 +3,37 @@
 module Userplex
   module Resources
     class Logs
-      # Records multiple log occurrences in a single request. Requires a valid API key
-      # for authentication.
       sig do
         params(
-          logs: T::Array[Userplex::LogBatchParams::Log::OrHash],
+          body: T::Array[Userplex::LogBatchParams::Body::OrHash],
           request_options: Userplex::RequestOptions::OrHash
         ).returns(Userplex::Models::LogBatchResponse)
       end
       def batch(
-        # List of logs to track
-        logs:,
+        # A list of logs to ingest
+        body: nil,
         request_options: {}
       )
       end
 
-      # Creates or uses an existing log and records a log occurrence for an end user.
-      # Requires a valid API key for authentication.
       sig do
         params(
           name: String,
-          user_id: String,
-          data: T::Hash[Symbol, T.nilable(T.anything)],
-          properties: T::Hash[Symbol, T.nilable(T.anything)],
+          data: T::Hash[Symbol, T.anything],
           timestamp: Time,
+          user_id: String,
           request_options: Userplex::RequestOptions::OrHash
         ).returns(Userplex::Models::LogNewResponse)
       end
       def new(
+        # Log name
         name:,
-        # External user ID
-        user_id:,
         # Additional log data
         data: nil,
-        # Alias for data, for compatibility
-        properties: nil,
         # Log timestamp (ISO 8601)
         timestamp: nil,
+        # External user ID
+        user_id: nil,
         request_options: {}
       )
       end

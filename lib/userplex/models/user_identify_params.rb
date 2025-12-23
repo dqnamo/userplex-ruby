@@ -8,37 +8,37 @@ module Userplex
       include Userplex::Internal::Type::RequestParameters
 
       # @!attribute user_id
-      #   Unique identifier for the user
+      #   External user ID
       #
       #   @return [String]
       required :user_id, String
 
+      # @!attribute attributes
+      #   Additional user attributes
+      #
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :attributes, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown]
+
       # @!attribute email
-      #   User email address
+      #   User email
       #
       #   @return [String, nil]
       optional :email, String
 
       # @!attribute name
-      #   User full name
+      #   User name
       #
       #   @return [String, nil]
       optional :name, String
 
-      # @!attribute properties
-      #   Additional user properties
+      # @!method initialize(user_id:, attributes: nil, email: nil, name: nil, request_options: {})
+      #   @param user_id [String] External user ID
       #
-      #   @return [Hash{Symbol=>Object, nil}, nil]
-      optional :properties, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
-
-      # @!method initialize(user_id:, email: nil, name: nil, properties: nil, request_options: {})
-      #   @param user_id [String] Unique identifier for the user
+      #   @param attributes [Hash{Symbol=>Object}] Additional user attributes
       #
-      #   @param email [String] User email address
+      #   @param email [String] User email
       #
-      #   @param name [String] User full name
-      #
-      #   @param properties [Hash{Symbol=>Object, nil}] Additional user properties
+      #   @param name [String] User name
       #
       #   @param request_options [Userplex::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -7,40 +7,29 @@ module Userplex
       extend Userplex::Internal::Type::RequestParameters::Converter
       include Userplex::Internal::Type::RequestParameters
 
-      # @!attribute logs
-      #   List of logs to track
+      # @!attribute body
+      #   A list of logs to ingest
       #
-      #   @return [Array<Userplex::Models::LogBatchParams::Log>]
-      required :logs, -> { Userplex::Internal::Type::ArrayOf[Userplex::LogBatchParams::Log] }
+      #   @return [Array<Userplex::Models::LogBatchParams::Body>, nil]
+      optional :body, -> { Userplex::Internal::Type::ArrayOf[Userplex::LogBatchParams::Body] }
 
-      # @!method initialize(logs:, request_options: {})
-      #   @param logs [Array<Userplex::Models::LogBatchParams::Log>] List of logs to track
+      # @!method initialize(body: nil, request_options: {})
+      #   @param body [Array<Userplex::Models::LogBatchParams::Body>] A list of logs to ingest
       #
       #   @param request_options [Userplex::RequestOptions, Hash{Symbol=>Object}]
 
-      class Log < Userplex::Internal::Type::BaseModel
+      class Body < Userplex::Internal::Type::BaseModel
         # @!attribute name
+        #   Log name
         #
         #   @return [String]
         required :name, String
 
-        # @!attribute user_id
-        #   External user ID
-        #
-        #   @return [String]
-        required :user_id, String
-
         # @!attribute data
         #   Additional log data
         #
-        #   @return [Hash{Symbol=>Object, nil}, nil]
-        optional :data, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
-
-        # @!attribute properties
-        #   Alias for data, for compatibility
-        #
-        #   @return [Hash{Symbol=>Object, nil}, nil]
-        optional :properties, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
+        #   @return [Hash{Symbol=>Object}, nil]
+        optional :data, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown]
 
         # @!attribute timestamp
         #   Log timestamp (ISO 8601)
@@ -48,16 +37,20 @@ module Userplex
         #   @return [Time, nil]
         optional :timestamp, Time
 
-        # @!method initialize(name:, user_id:, data: nil, properties: nil, timestamp: nil)
-        #   @param name [String]
+        # @!attribute user_id
+        #   External user ID
         #
-        #   @param user_id [String] External user ID
+        #   @return [String, nil]
+        optional :user_id, String
+
+        # @!method initialize(name:, data: nil, timestamp: nil, user_id: nil)
+        #   @param name [String] Log name
         #
-        #   @param data [Hash{Symbol=>Object, nil}] Additional log data
-        #
-        #   @param properties [Hash{Symbol=>Object, nil}] Alias for data, for compatibility
+        #   @param data [Hash{Symbol=>Object}] Additional log data
         #
         #   @param timestamp [Time] Log timestamp (ISO 8601)
+        #
+        #   @param user_id [String] External user ID
       end
     end
   end

@@ -3,9 +3,9 @@ module Userplex
     type user_identify_params =
       {
         user_id: String,
+        attributes: ::Hash[Symbol, top],
         email: String,
-        name: String,
-        properties: ::Hash[Symbol, top?]
+        name: String
       }
       & Userplex::Internal::Type::request_parameters
 
@@ -15,6 +15,10 @@ module Userplex
 
       attr_accessor user_id: String
 
+      attr_reader attributes: ::Hash[Symbol, top]?
+
+      def attributes=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
       attr_reader email: String?
 
       def email=: (String) -> String
@@ -23,23 +27,19 @@ module Userplex
 
       def name=: (String) -> String
 
-      attr_reader properties: ::Hash[Symbol, top?]?
-
-      def properties=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
-
       def initialize: (
         user_id: String,
+        ?attributes: ::Hash[Symbol, top],
         ?email: String,
         ?name: String,
-        ?properties: ::Hash[Symbol, top?],
         ?request_options: Userplex::request_opts
       ) -> void
 
       def to_hash: -> {
         user_id: String,
+        attributes: ::Hash[Symbol, top],
         email: String,
         name: String,
-        properties: ::Hash[Symbol, top?],
         request_options: Userplex::RequestOptions
       }
     end
