@@ -8,27 +8,16 @@ module Userplex
       include Userplex::Internal::Type::RequestParameters
 
       # @!attribute name
+      #   Log name
       #
       #   @return [String]
       required :name, String
 
-      # @!attribute user_id
-      #   External user ID
-      #
-      #   @return [String]
-      required :user_id, String
-
       # @!attribute data
       #   Additional log data
       #
-      #   @return [Hash{Symbol=>Object, nil}, nil]
-      optional :data, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
-
-      # @!attribute properties
-      #   Alias for data, for compatibility
-      #
-      #   @return [Hash{Symbol=>Object, nil}, nil]
-      optional :properties, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
+      #   @return [Hash{Symbol=>Object}, nil]
+      optional :data, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown]
 
       # @!attribute timestamp
       #   Log timestamp (ISO 8601)
@@ -36,16 +25,20 @@ module Userplex
       #   @return [Time, nil]
       optional :timestamp, Time
 
-      # @!method initialize(name:, user_id:, data: nil, properties: nil, timestamp: nil, request_options: {})
-      #   @param name [String]
+      # @!attribute user_id
+      #   External user ID
       #
-      #   @param user_id [String] External user ID
+      #   @return [String, nil]
+      optional :user_id, String
+
+      # @!method initialize(name:, data: nil, timestamp: nil, user_id: nil, request_options: {})
+      #   @param name [String] Log name
       #
-      #   @param data [Hash{Symbol=>Object, nil}] Additional log data
-      #
-      #   @param properties [Hash{Symbol=>Object, nil}] Alias for data, for compatibility
+      #   @param data [Hash{Symbol=>Object}] Additional log data
       #
       #   @param timestamp [Time] Log timestamp (ISO 8601)
+      #
+      #   @param user_id [String] External user ID
       #
       #   @param request_options [Userplex::RequestOptions, Hash{Symbol=>Object}]
     end

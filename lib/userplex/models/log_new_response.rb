@@ -5,13 +5,12 @@ module Userplex
     # @see Userplex::Resources::Logs#new
     class LogNewResponse < Userplex::Internal::Type::BaseModel
       # @!attribute success
-      #   Operation success status
       #
       #   @return [Boolean]
       required :success, Userplex::Internal::Type::Boolean
 
       # @!method initialize(success:)
-      #   @param success [Boolean] Operation success status
+      #   @param success [Boolean]
     end
   end
 end

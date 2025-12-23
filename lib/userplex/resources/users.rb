@@ -3,18 +3,15 @@
 module Userplex
   module Resources
     class Users
-      # Creates or updates an end user in InstantDB with the provided information.
-      # Requires a valid API key for authentication.
+      # @overload identify(user_id:, attributes: nil, email: nil, name: nil, request_options: {})
       #
-      # @overload identify(user_id:, email: nil, name: nil, properties: nil, request_options: {})
+      # @param user_id [String] External user ID
       #
-      # @param user_id [String] Unique identifier for the user
+      # @param attributes [Hash{Symbol=>Object}] Additional user attributes
       #
-      # @param email [String] User email address
+      # @param email [String] User email
       #
-      # @param name [String] User full name
-      #
-      # @param properties [Hash{Symbol=>Object, nil}] Additional user properties
+      # @param name [String] User name
       #
       # @param request_options [Userplex::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -25,7 +22,7 @@ module Userplex
         parsed, options = Userplex::UserIdentifyParams.dump_request(params)
         @client.request(
           method: :post,
-          path: "api/identify",
+          path: "identify",
           body: parsed,
           model: Userplex::Models::UserIdentifyResponse,
           options: options

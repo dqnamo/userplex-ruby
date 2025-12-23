@@ -26,11 +26,9 @@ gem "userplex", "~> 0.8.0"
 require "bundler/setup"
 require "userplex"
 
-userplex = Userplex::Client.new(
-  api_key: ENV["USERPLEX_API_KEY"] # This is the default and can be omitted
-)
+userplex = Userplex::Client.new(api_key: "My API Key")
 
-response = userplex.users.identify(user_id: "user_id", email: "REPLACE_ME", name: "REPLACE_ME")
+response = userplex.logs.new(name: "REPLACE_ME")
 
 puts(response.success)
 ```
@@ -41,7 +39,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  user = userplex.users.identify(user_id: "user_id", email: "REPLACE_ME", name: "REPLACE_ME")
+  log = userplex.logs.new(name: "REPLACE_ME")
 rescue Userplex::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -80,16 +78,12 @@ You can use the `max_retries` option to configure or disable this:
 ```ruby
 # Configure the default for all requests:
 userplex = Userplex::Client.new(
-  max_retries: 0 # default is 2
+  max_retries: 0, # default is 2
+  api_key: "My API Key"
 )
 
 # Or, configure per-request:
-userplex.users.identify(
-  user_id: "user_id",
-  email: "REPLACE_ME",
-  name: "REPLACE_ME",
-  request_options: {max_retries: 5}
-)
+userplex.logs.new(name: "REPLACE_ME", request_options: {max_retries: 5})
 ```
 
 ### Timeouts
@@ -99,16 +93,12 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 ```ruby
 # Configure the default for all requests:
 userplex = Userplex::Client.new(
-  timeout: nil # default is 60
+  timeout: nil, # default is 60
+  api_key: "My API Key"
 )
 
 # Or, configure per-request:
-userplex.users.identify(
-  user_id: "user_id",
-  email: "REPLACE_ME",
-  name: "REPLACE_ME",
-  request_options: {timeout: 5}
-)
+userplex.logs.new(name: "REPLACE_ME", request_options: {timeout: 5})
 ```
 
 On timeout, `Userplex::Errors::APITimeoutError` is raised.
@@ -139,9 +129,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 
 ```ruby
 response =
-  userplex.users.identify(
-    user_id: "user_id",
-    email: "REPLACE_ME",
+  userplex.logs.new(
     name: "REPLACE_ME",
     request_options: {
       extra_query: {my_query_parameter: value},
@@ -188,18 +176,18 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-userplex.users.identify(user_id: "user_id", email: "REPLACE_ME", name: "REPLACE_ME")
+userplex.logs.new(name: "REPLACE_ME")
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-userplex.users.identify(user_id: "user_id", email: "REPLACE_ME", name: "REPLACE_ME")
+userplex.logs.new(name: "REPLACE_ME")
 
 # You can also splat a full Params class:
-params = Userplex::UserIdentifyParams.new(user_id: "user_id", email: "REPLACE_ME", name: "REPLACE_ME")
-userplex.users.identify(**params)
+params = Userplex::LogNewParams.new(name: "REPLACE_ME")
+userplex.logs.new(**params)
 ```
 
 ## Versioning

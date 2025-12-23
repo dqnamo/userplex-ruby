@@ -3,9 +3,9 @@ module Userplex
     class Users
       def identify: (
         user_id: String,
+        ?attributes: ::Hash[Symbol, top],
         ?email: String,
         ?name: String,
-        ?properties: ::Hash[Symbol, top?],
         ?request_options: Userplex::request_opts
       ) -> Userplex::Models::UserIdentifyResponse
 

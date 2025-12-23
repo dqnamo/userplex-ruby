@@ -3,43 +3,35 @@
 module Userplex
   module Resources
     class Logs
-      # Records multiple log occurrences in a single request. Requires a valid API key
-      # for authentication.
+      # @overload batch(body: nil, request_options: {})
       #
-      # @overload batch(logs:, request_options: {})
-      #
-      # @param logs [Array<Userplex::Models::LogBatchParams::Log>] List of logs to track
+      # @param body [Array<Userplex::Models::LogBatchParams::Body>] A list of logs to ingest
       #
       # @param request_options [Userplex::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [Userplex::Models::LogBatchResponse]
       #
       # @see Userplex::Models::LogBatchParams
-      def batch(params)
+      def batch(params = {})
         parsed, options = Userplex::LogBatchParams.dump_request(params)
         @client.request(
           method: :post,
-          path: "api/logs/batch",
-          body: parsed,
+          path: "logs",
+          body: parsed[:body],
           model: Userplex::Models::LogBatchResponse,
           options: options
         )
       end
 
-      # Creates or uses an existing log and records a log occurrence for an end user.
-      # Requires a valid API key for authentication.
+      # @overload new(name:, data: nil, timestamp: nil, user_id: nil, request_options: {})
       #
-      # @overload new(name:, user_id:, data: nil, properties: nil, timestamp: nil, request_options: {})
+      # @param name [String] Log name
       #
-      # @param name [String]
-      #
-      # @param user_id [String] External user ID
-      #
-      # @param data [Hash{Symbol=>Object, nil}] Additional log data
-      #
-      # @param properties [Hash{Symbol=>Object, nil}] Alias for data, for compatibility
+      # @param data [Hash{Symbol=>Object}] Additional log data
       #
       # @param timestamp [Time] Log timestamp (ISO 8601)
+      #
+      # @param user_id [String] External user ID
       #
       # @param request_options [Userplex::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -50,7 +42,7 @@ module Userplex
         parsed, options = Userplex::LogNewParams.dump_request(params)
         @client.request(
           method: :post,
-          path: "api/log",
+          path: "log",
           body: parsed,
           model: Userplex::Models::LogNewResponse,
           options: options
