@@ -25,6 +25,15 @@ module Userplex
     # @return [Userplex::Resources::Logs]
     attr_reader :logs
 
+    # @api private
+    #
+    # @return [Hash{String=>String}]
+    private def auth_headers
+      return {} if @api_key.nil?
+
+      {"authorization" => "Bearer #{@api_key}"}
+    end
+
     # Creates and returns a new client for interacting with the API.
     #
     # @param api_key [String, nil] Enter your API key from your project settings Defaults to
