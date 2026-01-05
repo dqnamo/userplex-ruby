@@ -3,6 +3,7 @@
 module Userplex
   module Resources
     class Users
+      # Identify a user
       sig do
         params(
           user_id: String,
@@ -13,13 +14,9 @@ module Userplex
         ).returns(Userplex::Models::UserIdentifyResponse)
       end
       def identify(
-        # External user ID
         user_id:,
-        # Additional user attributes
         attributes: nil,
-        # User email
         email: nil,
-        # User name
         name: nil,
         request_options: {}
       )
