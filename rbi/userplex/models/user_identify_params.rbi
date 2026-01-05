@@ -16,10 +16,10 @@ module Userplex
       attr_accessor :user_id
 
       # Additional user attributes
-      sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+      sig { returns(T.nilable(T::Hash[Symbol, T.nilable(T.anything)])) }
       attr_reader :attributes
 
-      sig { params(attributes: T::Hash[Symbol, T.anything]).void }
+      sig { params(attributes: T::Hash[Symbol, T.nilable(T.anything)]).void }
       attr_writer :attributes
 
       # User email
@@ -39,7 +39,7 @@ module Userplex
       sig do
         params(
           user_id: String,
-          attributes: T::Hash[Symbol, T.anything],
+          attributes: T::Hash[Symbol, T.nilable(T.anything)],
           email: String,
           name: String,
           request_options: Userplex::RequestOptions::OrHash
@@ -62,7 +62,7 @@ module Userplex
         override.returns(
           {
             user_id: String,
-            attributes: T::Hash[Symbol, T.anything],
+            attributes: T::Hash[Symbol, T.nilable(T.anything)],
             email: String,
             name: String,
             request_options: Userplex::RequestOptions

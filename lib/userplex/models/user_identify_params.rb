@@ -16,8 +16,8 @@ module Userplex
       # @!attribute attributes
       #   Additional user attributes
       #
-      #   @return [Hash{Symbol=>Object}, nil]
-      optional :attributes, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown]
+      #   @return [Hash{Symbol=>Object, nil}, nil]
+      optional :attributes, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
 
       # @!attribute email
       #   User email
@@ -34,7 +34,7 @@ module Userplex
       # @!method initialize(user_id:, attributes: nil, email: nil, name: nil, request_options: {})
       #   @param user_id [String] External user ID
       #
-      #   @param attributes [Hash{Symbol=>Object}] Additional user attributes
+      #   @param attributes [Hash{Symbol=>Object, nil}] Additional user attributes
       #
       #   @param email [String] User email
       #

@@ -28,8 +28,8 @@ module Userplex
         # @!attribute data
         #   Additional log data
         #
-        #   @return [Hash{Symbol=>Object}, nil]
-        optional :data, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown]
+        #   @return [Hash{Symbol=>Object, nil}, nil]
+        optional :data, Userplex::Internal::Type::HashOf[Userplex::Internal::Type::Unknown, nil?: true]
 
         # @!attribute timestamp
         #   Log timestamp (ISO 8601)
@@ -46,7 +46,7 @@ module Userplex
         # @!method initialize(name:, data: nil, timestamp: nil, user_id: nil)
         #   @param name [String] Log name
         #
-        #   @param data [Hash{Symbol=>Object}] Additional log data
+        #   @param data [Hash{Symbol=>Object, nil}] Additional log data
         #
         #   @param timestamp [Time] Log timestamp (ISO 8601)
         #

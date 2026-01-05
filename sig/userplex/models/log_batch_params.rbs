@@ -27,7 +27,7 @@ module Userplex
       type body =
         {
           name: String,
-          data: ::Hash[Symbol, top],
+          data: ::Hash[Symbol, top?],
           timestamp: Time,
           user_id: String
         }
@@ -35,9 +35,9 @@ module Userplex
       class Body < Userplex::Internal::Type::BaseModel
         attr_accessor name: String
 
-        attr_reader data: ::Hash[Symbol, top]?
+        attr_reader data: ::Hash[Symbol, top?]?
 
-        def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+        def data=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
 
         attr_reader timestamp: Time?
 
@@ -49,14 +49,14 @@ module Userplex
 
         def initialize: (
           name: String,
-          ?data: ::Hash[Symbol, top],
+          ?data: ::Hash[Symbol, top?],
           ?timestamp: Time,
           ?user_id: String
         ) -> void
 
         def to_hash: -> {
           name: String,
-          data: ::Hash[Symbol, top],
+          data: ::Hash[Symbol, top?],
           timestamp: Time,
           user_id: String
         }
