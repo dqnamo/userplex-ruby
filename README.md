@@ -15,7 +15,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "userplex", "~> 0.12.0"
+gem "userplex", "~> 0.13.0"
 ```
 
 <!-- x-release-please-end -->
@@ -26,7 +26,9 @@ gem "userplex", "~> 0.12.0"
 require "bundler/setup"
 require "userplex"
 
-userplex = Userplex::Client.new(api_key: "My API Key")
+userplex = Userplex::Client.new(
+  api_key: ENV["USERPLEX_API_KEY"] # This is the default and can be omitted
+)
 
 response = userplex.logs.new(name: "REPLACE_ME")
 
@@ -78,8 +80,7 @@ You can use the `max_retries` option to configure or disable this:
 ```ruby
 # Configure the default for all requests:
 userplex = Userplex::Client.new(
-  max_retries: 0, # default is 2
-  api_key: "My API Key"
+  max_retries: 0 # default is 2
 )
 
 # Or, configure per-request:
@@ -93,8 +94,7 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 ```ruby
 # Configure the default for all requests:
 userplex = Userplex::Client.new(
-  timeout: nil, # default is 60
-  api_key: "My API Key"
+  timeout: nil # default is 60
 )
 
 # Or, configure per-request:
