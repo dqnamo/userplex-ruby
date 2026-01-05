@@ -3,7 +3,7 @@ module Userplex
     type log_new_params =
       {
         name: String,
-        data: ::Hash[Symbol, top],
+        data: ::Hash[Symbol, top?],
         timestamp: Time,
         user_id: String
       }
@@ -15,9 +15,9 @@ module Userplex
 
       attr_accessor name: String
 
-      attr_reader data: ::Hash[Symbol, top]?
+      attr_reader data: ::Hash[Symbol, top?]?
 
-      def data=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+      def data=: (::Hash[Symbol, top?]) -> ::Hash[Symbol, top?]
 
       attr_reader timestamp: Time?
 
@@ -29,7 +29,7 @@ module Userplex
 
       def initialize: (
         name: String,
-        ?data: ::Hash[Symbol, top],
+        ?data: ::Hash[Symbol, top?],
         ?timestamp: Time,
         ?user_id: String,
         ?request_options: Userplex::request_opts
@@ -37,7 +37,7 @@ module Userplex
 
       def to_hash: -> {
         name: String,
-        data: ::Hash[Symbol, top],
+        data: ::Hash[Symbol, top?],
         timestamp: Time,
         user_id: String,
         request_options: Userplex::RequestOptions

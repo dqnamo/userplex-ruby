@@ -7,7 +7,7 @@ module Userplex
       #
       # @param user_id [String] External user ID
       #
-      # @param attributes [Hash{Symbol=>Object}] Additional user attributes
+      # @param attributes [Hash{Symbol=>Object, nil}] Additional user attributes
       #
       # @param email [String] User email
       #

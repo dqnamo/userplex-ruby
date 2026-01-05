@@ -3,7 +3,7 @@ module Userplex
     class Users
       def identify: (
         user_id: String,
-        ?attributes: ::Hash[Symbol, top],
+        ?attributes: ::Hash[Symbol, top?],
         ?email: String,
         ?name: String,
         ?request_options: Userplex::request_opts
