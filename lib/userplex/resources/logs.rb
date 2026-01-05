@@ -27,7 +27,7 @@ module Userplex
       #
       # @param name [String] Log name
       #
-      # @param data [Hash{Symbol=>Object}] Additional log data
+      # @param data [Hash{Symbol=>Object, nil}] Additional log data
       #
       # @param timestamp [Time] Log timestamp (ISO 8601)
       #

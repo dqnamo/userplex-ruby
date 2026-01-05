@@ -19,7 +19,7 @@ module Userplex
       sig do
         params(
           name: String,
-          data: T::Hash[Symbol, T.anything],
+          data: T::Hash[Symbol, T.nilable(T.anything)],
           timestamp: Time,
           user_id: String,
           request_options: Userplex::RequestOptions::OrHash

@@ -6,7 +6,7 @@ module Userplex
       sig do
         params(
           user_id: String,
-          attributes: T::Hash[Symbol, T.anything],
+          attributes: T::Hash[Symbol, T.nilable(T.anything)],
           email: String,
           name: String,
           request_options: Userplex::RequestOptions::OrHash

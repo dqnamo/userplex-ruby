@@ -14,8 +14,6 @@ module Userplex
 
     attr_reader logs: Userplex::Resources::Logs
 
-    private def auth_headers: -> ::Hash[String, String]
-
     def initialize: (
       ?api_key: String?,
       ?base_url: String?,

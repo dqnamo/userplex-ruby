@@ -55,10 +55,10 @@ module Userplex
         attr_accessor :name
 
         # Additional log data
-        sig { returns(T.nilable(T::Hash[Symbol, T.anything])) }
+        sig { returns(T.nilable(T::Hash[Symbol, T.nilable(T.anything)])) }
         attr_reader :data
 
-        sig { params(data: T::Hash[Symbol, T.anything]).void }
+        sig { params(data: T::Hash[Symbol, T.nilable(T.anything)]).void }
         attr_writer :data
 
         # Log timestamp (ISO 8601)
@@ -78,7 +78,7 @@ module Userplex
         sig do
           params(
             name: String,
-            data: T::Hash[Symbol, T.anything],
+            data: T::Hash[Symbol, T.nilable(T.anything)],
             timestamp: Time,
             user_id: String
           ).returns(T.attached_class)
@@ -99,7 +99,7 @@ module Userplex
           override.returns(
             {
               name: String,
-              data: T::Hash[Symbol, T.anything],
+              data: T::Hash[Symbol, T.nilable(T.anything)],
               timestamp: Time,
               user_id: String
             }
