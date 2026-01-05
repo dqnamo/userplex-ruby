@@ -11,25 +11,21 @@ module Userplex
           T.any(Userplex::LogNewParams, Userplex::Internal::AnyHash)
         end
 
-      # Log name
       sig { returns(String) }
       attr_accessor :name
 
-      # Additional log data
       sig { returns(T.nilable(T::Hash[Symbol, T.nilable(T.anything)])) }
       attr_reader :data
 
       sig { params(data: T::Hash[Symbol, T.nilable(T.anything)]).void }
       attr_writer :data
 
-      # Log timestamp (ISO 8601)
       sig { returns(T.nilable(Time)) }
       attr_reader :timestamp
 
       sig { params(timestamp: Time).void }
       attr_writer :timestamp
 
-      # External user ID
       sig { returns(T.nilable(String)) }
       attr_reader :user_id
 
@@ -46,13 +42,9 @@ module Userplex
         ).returns(T.attached_class)
       end
       def self.new(
-        # Log name
         name:,
-        # Additional log data
         data: nil,
-        # Log timestamp (ISO 8601)
         timestamp: nil,
-        # External user ID
         user_id: nil,
         request_options: {}
       )

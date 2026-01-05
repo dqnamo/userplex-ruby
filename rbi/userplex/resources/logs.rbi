@@ -3,19 +3,17 @@
 module Userplex
   module Resources
     class Logs
+      # Log multiple events
       sig do
         params(
           body: T::Array[Userplex::LogBatchParams::Body::OrHash],
           request_options: Userplex::RequestOptions::OrHash
         ).returns(Userplex::Models::LogBatchResponse)
       end
-      def batch(
-        # A list of logs to ingest
-        body: nil,
-        request_options: {}
-      )
+      def batch(body: nil, request_options: {})
       end
 
+      # Log a single event
       sig do
         params(
           name: String,
@@ -26,13 +24,9 @@ module Userplex
         ).returns(Userplex::Models::LogNewResponse)
       end
       def new(
-        # Log name
         name:,
-        # Additional log data
         data: nil,
-        # Log timestamp (ISO 8601)
         timestamp: nil,
-        # External user ID
         user_id: nil,
         request_options: {}
       )
