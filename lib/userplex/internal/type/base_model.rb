@@ -438,8 +438,8 @@ module Userplex
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `user_identify_response` is a `Userplex::Models::UserIdentifyResponse`
-        #   user_identify_response => {
+        #   # `event_capture_response` is a `Userplex::Models::EventCaptureResponse`
+        #   event_capture_response => {
         #     success: success
         #   }
         def deconstruct_keys(keys)

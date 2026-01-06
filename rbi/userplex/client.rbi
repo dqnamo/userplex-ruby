@@ -14,11 +14,11 @@ module Userplex
     sig { returns(String) }
     attr_reader :api_key
 
+    sig { returns(Userplex::Resources::Events) }
+    attr_reader :events
+
     sig { returns(Userplex::Resources::Users) }
     attr_reader :users
-
-    sig { returns(Userplex::Resources::Logs) }
-    attr_reader :logs
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }

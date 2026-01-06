@@ -10,9 +10,9 @@ module Userplex
 
     attr_reader api_key: String
 
-    attr_reader users: Userplex::Resources::Users
+    attr_reader events: Userplex::Resources::Events
 
-    attr_reader logs: Userplex::Resources::Logs
+    attr_reader users: Userplex::Resources::Users
 
     private def auth_headers: -> ::Hash[String, String]
 
