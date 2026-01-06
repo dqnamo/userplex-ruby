@@ -1,19 +1,6 @@
 module Userplex
   module Resources
     class Logs
-      def batch: (
-        ?body: ::Array[Userplex::LogBatchParams::Body],
-        ?request_options: Userplex::request_opts
-      ) -> Userplex::Models::LogBatchResponse
-
-      def new: (
-        name: String,
-        ?data: ::Hash[Symbol, top?],
-        ?timestamp: Time,
-        ?user_id: String,
-        ?request_options: Userplex::request_opts
-      ) -> Userplex::Models::LogNewResponse
-
       def initialize: (client: Userplex::Client) -> void
     end
   end
