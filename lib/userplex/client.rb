@@ -19,11 +19,11 @@ module Userplex
     # @return [String]
     attr_reader :api_key
 
+    # @return [Userplex::Resources::Events]
+    attr_reader :events
+
     # @return [Userplex::Resources::Users]
     attr_reader :users
-
-    # @return [Userplex::Resources::Logs]
-    attr_reader :logs
 
     # @api private
     #
@@ -73,8 +73,8 @@ module Userplex
         max_retry_delay: max_retry_delay
       )
 
+      @events = Userplex::Resources::Events.new(client: self)
       @users = Userplex::Resources::Users.new(client: self)
-      @logs = Userplex::Resources::Logs.new(client: self)
     end
   end
 end

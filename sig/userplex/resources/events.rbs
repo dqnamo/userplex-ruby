@@ -1,0 +1,15 @@
+module Userplex
+  module Resources
+    class Events
+      def capture: (
+        name: String,
+        ?data: ::Hash[Symbol, top?],
+        ?timestamp: Time,
+        ?user_id: String,
+        ?request_options: Userplex::request_opts
+      ) -> Userplex::Models::EventCaptureResponse
+
+      def initialize: (client: Userplex::Client) -> void
+    end
+  end
+end
