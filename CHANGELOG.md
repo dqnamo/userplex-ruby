@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.16.0 (2026-01-06)
+
+Full Changelog: [v0.15.0...v0.16.0](https://github.com/dqnamo/userplex-ruby/compare/v0.15.0...v0.16.0)
+
+### Features
+
+* **api:** manual updates ([eec546a](https://github.com/dqnamo/userplex-ruby/commit/eec546a90792b035aa09ea4c194b4e91a8eee8c4))
+
 ## 0.15.0 (2026-01-06)
 
 Full Changelog: [v0.14.0...v0.15.0](https://github.com/dqnamo/userplex-ruby/compare/v0.14.0...v0.15.0)
