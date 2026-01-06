@@ -1,3 +1,5 @@
 module Userplex
+  class EventCaptureParams = Userplex::Models::EventCaptureParams
+
   class UserIdentifyParams = Userplex::Models::UserIdentifyParams
 end
