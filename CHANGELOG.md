@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.16.1 (2026-02-03)
+
+Full Changelog: [v0.16.0...v0.16.1](https://github.com/dqnamo/userplex-ruby/compare/v0.16.0...v0.16.1)
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([2212153](https://github.com/dqnamo/userplex-ruby/commit/22121532c58515209963b4f2df7ae8e421508340))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([047f16e](https://github.com/dqnamo/userplex-ruby/commit/047f16e85b4ff2fa6e458c5bc003fb8f27721704))
+* move `cgi` into dependencies for ruby 4 ([f3bbed2](https://github.com/dqnamo/userplex-ruby/commit/f3bbed2026e0a4ef4c32e28f93bee10530aa66fc))
+
 ## 0.16.0 (2026-01-06)
 
 Full Changelog: [v0.15.0...v0.16.0](https://github.com/dqnamo/userplex-ruby/compare/v0.15.0...v0.16.0)
