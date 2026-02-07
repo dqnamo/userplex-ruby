@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.16.2 (2026-02-07)
+
+Full Changelog: [v0.16.1...v0.16.2](https://github.com/dqnamo/userplex-ruby/compare/v0.16.1...v0.16.2)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([ab54b58](https://github.com/dqnamo/userplex-ruby/commit/ab54b587c09d616fb14c559890ab57ec4c6dbf7a))
+
+
+### Chores
+
+* **docs:** remove www prefix ([111bdd7](https://github.com/dqnamo/userplex-ruby/commit/111bdd788526149f7e4eec6909133095c1591215))
+
 ## 0.16.1 (2026-02-03)
 
 Full Changelog: [v0.16.0...v0.16.1](https://github.com/dqnamo/userplex-ruby/compare/v0.16.0...v0.16.1)
