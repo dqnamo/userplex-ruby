@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.16.3 (2026-02-20)
+
+Full Changelog: [v0.16.2...v0.16.3](https://github.com/dqnamo/userplex-ruby/compare/v0.16.2...v0.16.3)
+
+### Chores
+
+* **internal:** remove mock server code ([87c90f1](https://github.com/dqnamo/userplex-ruby/commit/87c90f1b358b031adf5c5e604adc79b032695a0d))
+* update mock server docs ([39bbac5](https://github.com/dqnamo/userplex-ruby/commit/39bbac5be3889cf37f620dffbe85f6f68e5aed2b))
+
 ## 0.16.2 (2026-02-07)
 
 Full Changelog: [v0.16.1...v0.16.2](https://github.com/dqnamo/userplex-ruby/compare/v0.16.1...v0.16.2)

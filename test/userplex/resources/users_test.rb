@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Userplex::Test::Resources::UsersTest < Userplex::Test::ResourceTest
   def test_identify_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @userplex.users.identify(user_id: "user_id")
 
