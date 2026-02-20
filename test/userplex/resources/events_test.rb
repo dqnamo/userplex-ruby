@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Userplex::Test::Resources::EventsTest < Userplex::Test::ResourceTest
   def test_capture_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @userplex.events.capture(name: "name")
 
